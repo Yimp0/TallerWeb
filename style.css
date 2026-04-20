@@ -1,0 +1,85 @@
+body{
+    font-family:'Segos UI', sans-serif;
+    background-color: #f4f4f4;
+    padding:30px;
+}
+
+.tabla{
+    overflow-x:auto;
+    background-color:#fff;
+    padding:26px;
+    border-radius:12px;
+    box-shadow:0 0 15px rgba(0,0,0,0.1);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:600px;
+}
+
+caption{
+    caption-side:top;
+    font-size:1.8em;
+    margin-bottom:15px;
+    font-weight:bold;
+    color:#333;
+}
+
+td,th{
+    border: 1px solid #ccc;
+    padding:12px;
+    text-align:center;
+}
+
+thead{
+    background-color:#2e86de;
+    color:white;
+}
+
+tbody tr:hover{
+    background-color:#dff9fb;
+    transition: background color 0.3s ease;
+}
+
+td[contenteditable="true"]{
+    background-color:#fef9e7;
+    cursor:text;
+}
+
+td[contenteditable="true"]:focus{
+    background-color:#fff7c0;
+    outline:2px dashed #2980b9;
+}
+
+tfoot td{
+    text-align:left;
+    font-style:italic;
+    background-color:#f1f1f1;
+    color:#666;
+}
+
+button{
+    margin-top:15px;
+    padding: 10px 20px;
+    background-color:#2ecc71;
+    border:none;
+    color:white;
+    font-size:14px;
+    border-radius:8px;
+    cursor:pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover{
+    background-color:#27ae60;
+}
+
+@media (max-width:600px){
+    table{
+        font-size:14px;
+    }
+    th,td{
+        padding:8px;
+    }
+}

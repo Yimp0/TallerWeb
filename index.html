@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset= "UTF-8">
+    <title>Tabla Editable de Materiales</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <p>What's up, doc?</p>
+    <p>"Life is very short and what we have to do must be done in the now." - Audre Lorde</p>
+    <div class="tabla">
+      <table id=tablaMateriales>
+        <caption>Lista de Materiales de Construccion</caption>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Marca</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td contenteditable="true">Cemento</td>
+            <td contenteditable="true">SOL</td>
+            <td contenteditable="true">20.90</td>
+            <td contenteditable="true">40</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">Acero</td>
+            <td contenteditable="true">Arequipa</td>
+            <td contenteditable="true">14.50</td>
+            <td contenteditable="true">60</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">Arena</td>
+            <td contenteditable="true">Local</td>
+            <td contenteditable="true">10.10</td>
+            <td contenteditable="true">80</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <td colspan="4">Hacer clic en una celda para editar, luego guardara cambios</td>
+        </tfoot>
+      </table>
+      <button onclick="guardarCambios()">Guardar Cambios</button>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>  
