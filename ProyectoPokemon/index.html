@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Constructor de Equipos Pokemon</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header id="encabezado-principal">
+    <div id="encabezado-contenedor">
+
+      <div id="logo">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/xtransceiver.png">
+        <span id="logo-texto">Team Builder</span>
+      </div>
+
+      <!-- Navegación desktop -->
+      <nav id="nav-principal">
+        <button class="nav-btn active" data-page="teambuilder">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png">
+            Teambuilder
+        </button>
+        <button class="nav-btn" data-page="pokedex">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-radar.png">
+            Pokédex
+        </button>
+        <button class="nav-btn" data-page="equipos">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/adventure-rules.png">
+            Tus Equipos
+        </button>
+      </nav>
+
+      <button id="hamburger" aria-label="Menú">☰</button>
+    </div>
+  </header>
+
+  <!-- Menú móvil desplegable -->
+  <nav id="nav-movil">
+    <button class="nav-btn" data-page="teambuilder">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png">
+        Teambuilder
+    </button>
+    <button class="nav-btn" data-page="pokedex">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-radar.png">
+        Pokédex
+    </button>
+    <button class="nav-btn" data-page="equipos">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/adventure-rules.png">
+        Tus Equipos
+    </button>
+  </nav>
+
+  <main id="contenido-principal">
+
+
+    <!-- PÁGINA 1: TEAMBUILDER -->
+    <section id="pagina-teambuilder" class="pagina pagina-activa">
+
+      <!-- Fila de 6 slots del equipo -->
+      <div id="vista equipo">
+        <div id="team-slots-row">
+          <!-- Generado por JS → renderTeamOverview() -->
+        </div>
+        <div id="team-overview-actions">
+          <button id="clear-team-btn">🗑 Limpiar equipo</button>
+          <button class="nav-btn" data-page="import-export">📋 Import / Export</button>
+        </div>
+      </div>
+
+      <!-- Layout dos columnas: picker izquierda | editor derecha -->
+      <div id="builder-layout">
+
+        <!-- ── Columna izquierda: lista para agregar Pokémon ── -->
+        <aside id="selector-pokemon">
+
+          <div id="picker-search-row">
+            <div id="picker-search-wrapper">
+              <input id="picker-search" type="text" placeholder="Buscar Pokémon" autocomplete="off" />
+              <ul id="picker-autocomplete"></ul>
+            </div>
+            <button id="picker-search-btn">Buscar</button>
+          </div>
+
+          <div id="picker-type-filters">
+            <!-- Badges de tipo generados por JS -->
+          </div>
+
+          <div id="picker-grid">
+            <!-- Tarjetas generadas por JS → renderPickerGrid() -->
+          </div>
+          <div id="picker-pagination"></div>
+
+        </aside>
+
+        <!-- ── Columna derecha: formulario de edición ── -->
+        <div id="editor-panel">
+
+          <!-- Estado vacío -->
+          <div id="editor-empty-state">
+            <p>Haz clic en un slot del equipo para editarlo,<br />o agrega un Pokémon a tu equipodesde el panel izquierdo.</p>
+          </div>
+
+          <!-- Formulario Smogon-style -->
+          <form id="formulario-pokemon-editor" novalidate>
+
+            <!-- Encabezado: sprite + nombre + tipos + botón quitar -->
+            <div id="editor-header">
+              <img id="editor-sprite" src="" alt="" />
+              <div id="editor-header-info">
+                <h2 id="editor-pokemon-name">—</h2>
+                <div id="editor-types"></div>
+              </div>
+              <button type="button" id="editor-remove-btn" title="Quitar del equipo">✕</button>
+            </div>
+
+            <!-- Apodo -->
+            <div class="form-group">
+              <label for="f-nickname">Apodo</label>
+              <input id="f-nickname" type="text" placeholder="Opcional" maxlength="12" />
+            </div>
+
+            <!-- Forma alternativa -->
+            <div class="form-group" id="form-group-forms">
+              <label for="f-form">Forma</label>
+              <select id="f-form">
+                <option value="">— Normal —</option>
+                <!-- Opciones generadas por JS al cargar el Pokémon -->
+              </select>
+            </div>
+
+            <!-- Habilidad -->
+            <div class="form-group">
+              <label for="f-habilidad">Habilidad</label>
+              <select id="f-habilidad">
+                <!-- Generado por JS con las habilidades del Pokémon -->
+              </select>
+            </div>
+
+            <!-- Objeto (con autocomplete) -->
+            <div class="form-group">
+              <label for="f-objeto">Objeto (Held Item)</label>
+              <div id="item-search-wrapper">
+                <input id="f-objeto" type="text" placeholder="Buscar objeto…" autocomplete="off" />
+                <ul id="item-autocomplete"></ul>
+              </div>
+            </div>
+
+            <!-- Naturaleza -->
+            <div class="form-group">
+              <label for="f-nature">Naturaleza</label>
+              <select id="f-nature">
+                <!-- 25 naturalezas generadas por JS -->
+              </select>
+            </div>
+            <!-- Efecto de naturaleza en tiempo real -->
+            <div id="nature-effect-display"></div>
+
+            <!-- Movimientos (4 slots) -->
+            <div class="form-group">
+              <label>Movimientos</label>
+              <div id="moves-list">
+                <div class="move-slot" data-slot="0">
+                  <select class="f-move"><option value="">— Movimiento 1 —</option></select>
+                </div>
+                <div class="move-slot" data-slot="1">
+                  <select class="f-move"><option value="">— Movimiento 2 —</option></select>
+                </div>
+                <div class="move-slot" data-slot="2">
+                  <select class="f-move"><option value="">— Movimiento 3 —</option></select>
+                </div>
+                <div class="move-slot" data-slot="3">
+                  <select class="f-move"><option value="">— Movimiento 4 —</option></select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Nivel -->
+            <div class="form-group form-group-inline">
+              <label for="f-level">Nivel</label>
+              <input id="f-level" type="number" min="1" max="100" value="100" />
+            </div>
+
+            <!-- Género -->
+            <div class="form-group form-group-inline">
+              <label for="f-gender">Género</label>
+              <select id="f-gender">
+                <option value="M">♂ Macho</option>
+                <option value="F">♀ Hembra</option>
+                <option value="N">Sin género</option>
+              </select>
+            </div>
+
+            <!-- Shiny -->
+            <div class="form-group form-group-inline">
+              <label for="f-shiny">Shiny ✨</label>
+              <input id="f-shiny" type="checkbox" />
+            </div>
+
+            <!-- EVs (6 stats, 0-252, total máx 510) -->
+            <div class="form-group">
+              <label>EVs &nbsp;<span id="ev-total-display">(0 / 510)</span></label>
+              <div id="ev-sliders">
+                <!-- Generado por JS: renderStatInputs('ev') -->
+              </div>
+            </div>
+
+            <!-- IVs (6 stats, 0-31) -->
+            <div class="form-group">
+              <label>IVs</label>
+              <div id="iv-inputs">
+                <!-- Generado por JS: renderStatInputs('iv') -->
+              </div>
+            </div>
+
+            <!-- Stats finales calculados en tiempo real -->
+            <div class="form-group">
+              <label>Stats Finales <span class="label-hint">(calculados)</span></label>
+              <div id="final-stats-display">
+                <!-- Generado por JS: renderFinalStats() -->
+              </div>
+            </div>
+
+            <button type="button" id="editor-save-btn">✓ Guardar cambios</button>
+
+          </form>
+        </div><!-- /#editor-panel -->
+
+      </div><!-- /#builder-layout -->
+    </section>
+
+
+    <!-- PÁGINA 2: POKÉDEX -->
+    <section id="pagina-pokedex" class="pagina">
+
+      <div id="pokedex-search-bar">
+        <div id="dex-search-wrapper">
+          <input id="dex-search-input" type="text" placeholder="Buscar por nombre o número…" autocomplete="off" />
+          <ul id="dex-autocomplete"></ul>
+        </div>
+        <button id="dex-search-btn">Buscar</button>
+        <button id="dex-clear-btn">✕ Limpiar</button>
+      </div>
+
+      <div id="dex-type-filters">
+        <!-- Badges de tipo generados por JS -->
+      </div>
+
+      <h2 id="dex-results-title">Cargando Pokédex…</h2>
+      <div id="dex-grid">
+        <!-- Tarjetas generadas por JS → renderDexGrid() -->
+      </div>
+      <div id="dex-pagination"></div>
+
+      <!-- Modal de detalle individual -->
+      <div id="dex-modal-overlay">
+        <div id="dex-modal-box">
+          <button id="dex-modal-close">✕</button>
+          <div id="dex-modal-content"></div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- PÁGINA 3: ANÁLISIS DE TIPOS -->
+    <section id="pagina-analisis-tipos" class="pagina">
+      <h1>Análisis de Tipos del Equipo</h1>
+      <p class="subtitulo">Fortalezas y debilidades del equipo armado en el Teambuilder.</p>
+
+      <div id="contenido_analisis_tipos">
+        <!-- Generado por JS → renderTypeAnalysis() -->
+      </div>
+    </section>
+
+  </main><!-- /#main-content -->
+
+
+  <!-- ══════════════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════════════ -->
+  <footer id="main-footer">
+    <div id="footer-inner">
+
+      <div id="footer-brand">
+        <span id="footer-logo">◈ Team Builder</span>
+        <p>Pokémon es marca registrada de Nintendo / Game Freak.<br />Proyecto de uso educativo, sin fines comerciales.</p>
+      </div>
+
+      <div id="footer-links">
+        <p>Datos: <a href="https://pokeapi.co" target="_blank" rel="noopener">PokéAPI</a></p>
+        <p>Sprites: <a href="https://pokemonshowdown.com" target="_blank" rel="noopener">Pokémon Showdown</a></p>
+        <p>Agradecimientos: <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener">Pokémon Company</a></p>
+      </div>
+
+      <div id="footer-team-status">
+        <span id="team-footer-count">Equipo: 0 / 6</span>
+        <button class="nav-btn" data-page="teambuilder">Ir al Teambuilder ↗</button>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

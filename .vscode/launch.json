@@ -24,7 +24,7 @@
                 "--headless",
                 "--remote-debugging-port=9222"
             ],
-            "url": "c:\\Users\\Ismael\\.vscode\\extensions\\ms-edgedevtools.vscode-edge-devtools-2.1.10\\out\\startpage\\index.html", // Provide your project's url to finish configuring
+            "url": "file://c:\\Users\\Ismael\\Documents\\TallerWeb\\ProyectoPokemon\\index.html",
             "presentation": {
                 "hidden": true
             }

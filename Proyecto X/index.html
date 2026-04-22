@@ -1,0 +1,25 @@
+<form action="/enviar" method="POST">
+
+  <!-- Campos de texto -->
+  <label for="nombre">Nombre</label>
+  <input type="text" id="nombre" name="nombre" placeholder="Juan" required>
+
+  <label for="email">Correo electrónico</label>
+  <input type="email" id="email" name="email" placeholder="juan@ejemplo.com" required>
+
+  <!-- Lista desplegable -->
+  <label for="asunto">Asunto</label>
+  <select id="asunto" name="asunto">
+    <option value="">Selecciona...</option>
+    <option value="consulta">Consulta</option>
+    <option value="soporte">Soporte</option>
+  </select>
+
+  <!-- Área de texto -->
+  <label for="mensaje">Mensaje</label>
+  <textarea id="mensaje" name="mensaje" rows="4" placeholder="Tu mensaje..." required></textarea>
+
+  <!-- Botón -->
+  <button type="submit">Enviar</button>
+
+</form>
